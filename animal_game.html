@@ -1,27 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script
-  src="http://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
-
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-
-
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style type="text/css" media="screen">
+    canvas, img { display:block; margin:1em auto; border:1px solid black; }
+    canvas { background:url(underwater.jpg) }
+  </style>
 <style>
 canvas {
+    /*background-url:(underwater.jpg);*/
     border:1px solid #d3d3d3;
-    background-image: url("underwater.jpg");       /*insert background image, w3schools have instr. on inserting images in all ways*/
-} ;
-}
+  }
 .button {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -38,15 +27,18 @@ canvas {
 </head>
 <body onload="startGame()">
 <script>
+
 var myGamePiece;
 var myObstacles = [];
 var myScore;
+
 function startGame() {
     myGamePiece = new component(30, 30, "lime", 10, 120);
     myGamePiece.gravity = 0.05;
     myScore = new component("30px", "Consolas", "white", 0, 50, "text");
     myGameArea.start();
 }
+
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
@@ -55,12 +47,13 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
-        this.interval = setInterval(updateGameArea, -2);
+        this.interval = setInterval(updateGameArea, 20);
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
+
 function component(width, height, color, x, y, type) {
     this.type = type;
     this.score = 0;
@@ -112,6 +105,7 @@ function component(width, height, color, x, y, type) {
         return crash;
     }
 }
+
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
     for (i = 0; i < myObstacles.length; i += 1) {
@@ -123,7 +117,7 @@ function updateGameArea() {
     myGameArea.frameNo += 1;
     if (myGameArea.frameNo == 1 || everyinterval(150)) {
         x = myGameArea.canvas.width;
-        minHeight = 500;
+        minHeight = 400;
         maxHeight = -100;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
         minGap = 50;
@@ -141,19 +135,20 @@ function updateGameArea() {
     myGamePiece.newPos();
     myGamePiece.update();
 }
+
 function everyinterval(n) {
     if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
     return false;
 }
+
 function accelerate(n) {
     myGamePiece.gravity = n;
 }
 </script>
-
 <br>
-<a onmousedown="accelerate(-0.02)" onmouseup="accelerate(0.05)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">star</i></a>
-
-<p><font color="browm">Use the UP button to swim upwards!</p>
-<p><font color="green">SEA TURTLE GAME</p>
+<!-- <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">up</button> -->
+<center><button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="button">UP</button></center>
+<p>Use the UP button to stay in the air</p>
+<p>SEA TURTLE GAME</p>
 </body>
 </html>
