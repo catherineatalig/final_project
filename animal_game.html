@@ -39,6 +39,8 @@ canvas {
 </style>
 </head>
 <body onload="startGame()">
+
+
 <script>
 
 var myGamePiece;
@@ -58,7 +60,7 @@ var myGameArea = {
         this.canvas.width = 270;
         this.canvas.height = 480;
         this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        document.body.insertBefore(this.canvas, document.body.childNodes[1]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
         },
@@ -160,12 +162,8 @@ function accelerate(n) {
 </script>
 <br>
 <!-- <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">up</button> -->
-<<<<<<< HEAD
-<center><button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="button">UP</button></center>
-=======
+
 <center><button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">star</i></button></center>
-<p>Use the UP button to stay in the air</p>
-<p>SEA TURTLE GAME</p>
->>>>>>> 285e6223a50a84567ee535c9bb7b500a3565c5b5
+
 </body>
 </html>
