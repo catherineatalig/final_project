@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Habitack Game</title>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <title>HABITACK</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style type="text/css" media="screen">
     canvas, img { display:block; margin:1em auto; border:1px solid black; }
@@ -14,9 +24,9 @@ canvas {
     /*background-url:(underwater.jpg);*/
     border:1px solid #d3d3d3;
   }
-.button {
+/*.button {
     background-color: #4CAF50; /* Green */
-    border: none;
+    /*border: none;
     color: white;
     padding: 10px 15px;
     text-align: center;
@@ -25,10 +35,12 @@ canvas {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-}
+}*//
 </style>
 </head>
 <body onload="startGame()">
+
+
 <script>
 
 var myGamePiece;
@@ -48,7 +60,7 @@ var myGameArea = {
         this.canvas.width = 270;
         this.canvas.height = 480;
         this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        document.body.insertBefore(this.canvas, document.body.childNodes[1]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
         },
@@ -150,8 +162,8 @@ function accelerate(n) {
 </script>
 <br>
 <!-- <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">up</button> -->
+
 <center><button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">star</i></button></center>
-<p>Use the UP button to stay in the air</p>
-<p>SEA TURTLE GAME</p>
+
 </body>
 </html>
