@@ -36,6 +36,13 @@ canvas {
     margin: 4px 2px;
     cursor: pointer;
 }*//
+#middle{
+  text-align: center;
+}
+body {
+  text-align: center;
+}
+
 </style>
 </head>
 <body onload="startGame()">
@@ -173,7 +180,8 @@ function accelerate(n) {
 <br>
 <!-- <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">up</button> -->
 
-<center><button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">arrow_upward</i></button>  <a href="animal_game.html"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">replay</i>
-</center>
+<button id = "middle" onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">arrow_upward</i></button>
+<a href="animal_game.html" id= "middle" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">replay</i>
+
 </body>
 </html>
