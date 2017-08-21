@@ -36,9 +36,36 @@ canvas {
     margin: 4px 2px;
     cursor: pointer;
 }*//
+#middle{
+  text-align: center;
+}
+body {
+  text-align: center;
+}
+
 </style>
 </head>
 <body onload="startGame()">
+
+
+  <!-- <nav class="teal" role="navigation">
+    <div class="nav-wrapper">
+      <a id="logo-container" href="startpage.html"><img border="0" alt="W3Schools" src="logo3.png" align = "left" width="200" height="75"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav> -->
+
+
+
+
 
 
 <script>
@@ -48,9 +75,9 @@ var myObstacles = [];
 var myScore;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "lime", 10, 120);
+    myGamePiece = new component(60, 60,"icon.png", 10, 120, "image");
     myGamePiece.gravity = 0.05;
-    myScore = new component("30px", "Consolas", "white", 0, 50, "text");
+    myScore = new component("30px", "blue", 0, 50);
     myGameArea.start();
 }
 
@@ -63,6 +90,10 @@ var myGameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[1]);
         this.frameNo = 0;
         this.interval = setInterval(updateGameArea, 20);
+        window.addEventListener('touchmove', function (e) {
+           myGameArea.x = e.touches[0].screenX;
+           myGameArea.y = e.touches[0].screenY;
+       })
         },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -71,9 +102,13 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
-    this.score = 0;
-    this.width = 10;
-    this.height = 10;
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
+    }
+    // this.score = 0;
+    this.width = 50;
+    this.height = 40;
     this.speedX = 0;
     this.speedY = 0;
     this.x = x;
@@ -82,10 +117,16 @@ function component(width, height, color, x, y, type) {
     this.gravitySpeed = 0;
     this.update = function() {
         ctx = myGameArea.context;
-        if (this.type == "text") {
-            ctx.font = this.width + " " + this.height;
-            ctx.fillStyle = color;
-            ctx.fillText(this.text, this.x, this.y);
+        // if (this.type == "text") {
+        //     ctx.font = this.width + " " + this.height;
+        //     ctx.fillStyle = color;
+        //     ctx.fillText(this.text, this.x, this.y);
+        if (type == "image") {
+            ctx.drawImage(this.image,
+                this.x,
+                this.y,
+                this.width, this.height);
+
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -138,14 +179,14 @@ function updateGameArea() {
         minGap = 50;
         maxGap = 200;
         gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
-        myObstacles.push(new component(10, height, "brown", x, 0));
-        myObstacles.push(new component(10, x - height - gap, "brown", x, height + gap));
+        myObstacles.push(new component(10, height, "water6.png", x, 0,"image"));
+        myObstacles.push(new component(10, x - height - gap, "plastic2.gif", x, height + gap, "image"));
     }
     for (i = 0; i < myObstacles.length; i += 1) {
         myObstacles[i].x += -1;
         myObstacles[i].update();
     }
-    myScore.text="SCORE: " + myGameArea.frameNo;
+    // myScore.text="SCORE: " + myGameArea.frameNo;
     myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
@@ -163,7 +204,8 @@ function accelerate(n) {
 <br>
 <!-- <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">up</button> -->
 
-<center><button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">arrow_upward</i></button></center>
+<button id = "middle" onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">arrow_upward</i></button>
+<a href="animal_game.html" id= "middle" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">replay</i>
 
 </body>
 </html>
